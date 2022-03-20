@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { FlatList, Alert, ActivityIndicator } from 'react-native'
+import { 
+  View,
+  FlatList, 
+  Alert, 
+  ActivityIndicator, 
+  StyleSheet 
+} from 'react-native'
 
 import { SuperHeroCard } from '../../components/SuperHeroCard'
 
 import api from '../../services/api'
-
-import {
-  Container
-} from './styles'
 
 export function SuperHeroMobile() {
   const [loading, setLoading] = useState(true)
@@ -36,7 +38,9 @@ export function SuperHeroMobile() {
   }, [])
 
   return (
-    <Container>
+    <View
+      style={styles.container}
+    >
       {/* {loading ?
         <ActivityIndicator
           color='blue'
@@ -53,6 +57,14 @@ export function SuperHeroMobile() {
           contentContainerStyle={{ marginHorizontal: 50 }}
         />
       {/* } */}
-    </Container>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+
+    backgroundColor: 'rgba(35, 34, 41, 0.7)',
+  }
+})
