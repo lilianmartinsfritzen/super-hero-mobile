@@ -1,8 +1,9 @@
 import React from 'react'
-import { SuperHeroMobile } from './src/screens/SuperHeroMobile'
+import { Routes } from './src/routes/stack.routes'
+import { SuperHeroPowerstats } from './src/screens/SuperHeroPowerstats'
 
 export default function App() {
   return (
-    <SuperHeroMobile />
+    <Routes />
   )
 }
