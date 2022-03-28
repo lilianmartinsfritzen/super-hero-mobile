@@ -1,69 +1,49 @@
+import { CommonActions, useNavigation } from '@react-navigation/native'
 import React from 'react'
 
 import {
   StyleSheet,
-  View,
+  TouchableOpacity,
   Text,
   Image 
 } from 'react-native'
 
 export function SuperHeroCard(props) {
+  const navigation = useNavigation()
+  const { id } = props.data
+  
+  function showSuperHeroPowerstats() {
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: 'SuperHeroPowerstats',
+        params: {
+          id
+        }
+      })
+    )
+  }
 
   return (
-    <View
+    <TouchableOpacity
       style={styles.content}
+      onPress={showSuperHeroPowerstats}
     >
       <Text
         style={styles.superHeroName}
       >
-        {props.heroData.name}
+        {props.data.name}
       </Text>
 
       <Image 
-        source={{uri: props.heroData.images.md}} 
+        source={{uri: props.data.images.md}} 
         style={{
           resizeMode: "contain",
           width: 320,
-          height: 480
+          height: 400,
+          marginRight: 30 
         }}
       />
-
-      <View
-        style={styles.powerstats}
-      >
-        <Text
-          style={styles.powerstatsName}
-        >
-          {props.heroData.powerstats.intelligence} inteligencia
-        </Text>
-        <Text
-          style={styles.powerstatsName}
-        >
-          {props.heroData.powerstats.strength} força
-        </Text>
-        <Text
-          style={styles.powerstatsName}
-        >
-          {props.heroData.powerstats.speed} velocidade
-        </Text>
-        <Text
-          style={styles.powerstatsName}
-        >
-          {props.heroData.powerstats.durability} durabilidade
-        </Text>
-        <Text
-          style={styles.powerstatsName}
-        >
-          {props.heroData.powerstats.power} poder
-        </Text>
-        <Text
-          style={styles.powerstatsName}
-        >
-          {props.heroData.powerstats.combat} luta
-        </Text> 
-      </View>
-
-    </View>
+    </TouchableOpacity>
   )
 }
 
@@ -79,19 +59,5 @@ const styles = StyleSheet.create({
     color: 'rgba(235, 141, 34, 0.7)',
   
     marginBottom: 10,
-  },
-  powerstats: {
-    width: '50%',
-    padding: 5,
-    margin: 5,
-  
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  powerstatsName: {
-    fontSize: 16,
-    color: 'rgba(14, 210, 240, 0.7)',
-    padding: 10,
   }
 })

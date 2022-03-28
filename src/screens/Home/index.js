@@ -1,35 +1,48 @@
 import React, { useEffect, useState } from 'react'
+import { CommonActions, useNavigation } from '@react-navigation/native'
+import { SuperHeroCard } from '../../components/SuperHeroCard'
+
 import { 
   View,
   FlatList, 
   Alert, 
   ActivityIndicator, 
-  StyleSheet 
+  StyleSheet ,
 } from 'react-native'
 
-import { SuperHeroCard } from '../../components/SuperHeroCard'
 
 import api from '../../services/api'
 
-export function SuperHeroMobile() {
+export function Home() {
   const [loading, setLoading] = useState(true)
   const [heros, setHeros] = useState([])
+  // const navigation = useNavigation()
+
+  // function showSuperHeroPowerstats() {
+  //   navigation.dispatch(
+  //     CommonActions.navigate({
+  //       name: 'SuperHeroPowerstats'
+  //     })
+  //   )
+  // }
 
   function renderItem({ item }) {
-    return <SuperHeroCard heroData={item} />
+    return <SuperHeroCard data={item} />
   }
 
   async function fetchHeros() {
     try {
       const response = await api.get('/all.json')
       setHeros(response.data)
-      console.log('PASSOU AQUI')
+
     } catch (error) {
       console.log(error)
       Alert.alert('Não foi possível exibir o Super Heroi.')
+
     } finally {
       setLoading(false)
     }
+
   }
 
   useEffect(() => { 
@@ -41,22 +54,22 @@ export function SuperHeroMobile() {
     <View
       style={styles.container}
     >
-      {/* {loading ?
+      {loading ?
         <ActivityIndicator
           color='blue'
           size='large'
           style={{ flex: 1 }}
         />
-      : */}
+      :
         <FlatList
           data={heros}
           keyExtractor={item => String(item.id)}
           showsHorizontalScrollIndicator={true}
           renderItem={renderItem}
           horizontal={true}
-          contentContainerStyle={{ marginHorizontal: 50 }}
+          // onPress={() => showSuperHeroPowerstats}
         />
-      {/* } */}
+      }
     </View>
   )
 }
@@ -66,5 +79,9 @@ const styles = StyleSheet.create({
     flex: 1,
 
     backgroundColor: 'rgba(35, 34, 41, 0.7)',
+
+    margin: 0,
+    padding: 30,
+
   }
 })
