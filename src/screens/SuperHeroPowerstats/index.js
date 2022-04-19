@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useRoute } from '@react-navigation/native'
 import api from '../../services/api'
+import crashlytics from '@react-native-firebase/crashlytics';
 
 import {
   Alert,
@@ -18,9 +19,12 @@ export function SuperHeroPowerstats() {
     try {
       const response = await api.get(`id/${id}.json`)
       setHero(response.data.powerstats)
+      crashlytics().crash();
+      crashlytics().log('Fetch Hero Selected'); 
+      crashlytics().setAttribute('name', String(response.data.name))
 
     } catch (error) {
-      console.log(error)
+      crashlytics().recordError(error);
       Alert.alert('Não foi possível exibir o Super Heroi.')
     }
   }
