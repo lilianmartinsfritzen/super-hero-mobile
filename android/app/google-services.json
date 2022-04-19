@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "26298433384",
+    "project_id": "superheromobile-2644f",
+    "storage_bucket": "superheromobile-2644f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26298433384:android:74c9769ce0f4ac4e9ce0dd",
+        "android_client_info": {
+          "package_name": "com.superheromobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26298433384-kpg09lhbo7u2kktokbf7obo0v5ubuc1m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzQuveEm3B3AgpNQDGxhAM-KYBpRHKmpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "26298433384-kpg09lhbo7u2kktokbf7obo0v5ubuc1m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
